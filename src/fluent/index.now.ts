@@ -16,7 +16,21 @@ ClientScript({
     isolate_script: false,
     type: 'onLoad',
     script: script`function onLoad() {
-        g_form.addInfoMessage("Table loaded successfully!!")
+        g_form.addInfoMessage("Table loaded successfully!! 🚀")
+        
+        // Add a fun button to change form colors
+        setTimeout(function() {
+            var button = document.createElement('button');
+            button.innerHTML = '🎨 Make it Rainbow!';
+            button.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 1000; padding: 10px; background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;';
+            button.onclick = function() {
+                var colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#FFD93D', '#6BCF7F'];
+                var randomColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.style.background = 'linear-gradient(135deg, ' + randomColor + ', white)';
+                g_form.addInfoMessage('🌈 Form color changed! You made it fun! 🎉');
+            };
+            document.body.appendChild(button);
+        }, 1000);
     }`,
 })
 
