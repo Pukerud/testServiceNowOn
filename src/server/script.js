@@ -6,4 +6,4 @@ export function showStateUpdate(current, previous) {
 
     gs.addInfoMessage(`state updated from "${previousState}" to "${currentState}"`)
 }
-///test
+///test ENDRET I GITHUB
