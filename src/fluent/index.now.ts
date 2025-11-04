@@ -2,7 +2,7 @@ import { BusinessRule, ClientScript } from '@servicenow/sdk/core'
 import '@servicenow/sdk/global'
 import { showStateUpdate } from '../server/script.js'
 
-//creates a client script that pops up 'Table loaded successfully!!' message every time todo record is loaded
+//creates a client script that pops up 'Table loaded MUHAHAHAHAHAHAH!!' message every time todo record is loaded
 ClientScript({
     $id: Now.ID['cs0'],
     name: 'my_client_script',
