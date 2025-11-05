@@ -16,7 +16,7 @@ ClientScript({
     isolate_script: false,
     type: 'onLoad',
     script: script`function onLoad() {
-        g_form.addInfoMessage("Table loaded successfully!! 🚀🚀🚀🚀🚀🚀🚀🚀🚀")
+        g_form.addInfoMessage("Table loaded successfully!! NONONONON🚀🚀🚀🚀🚀🚀🚀🚀🚀")
         
         // Add a fun button to change form colors - works in both classic and workspace
         setTimeout(function() {
