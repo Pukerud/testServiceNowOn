@@ -1,13 +1,24 @@
-import { BusinessRule, UIAction } from '@servicenow/sdk/core'
+import { BusinessRule, UIAction, ClientScript } from '@servicenow/sdk/core'
 import '@servicenow/sdk/global'
 import { showStateUpdate } from '../server/script.js'
+
+// Simple client script to show a message when the form loads.
+ClientScript({
+    $id: Now.ID['cs_on_load_message'],
+    name: 'Show OnLoad Message',
+    table: 'incident',
+    type: 'onLoad',
+    ui_type: 'all',
+    script: script`function onLoad() {
+        g_form.addInfoMessage("Table loaded successfully!! 🚀🚀🚀🚀🚀🚀🚀🚀🚀");
+    }`
+});
 
 // Creates a UI Action button on the Incident form header to change the background color.
 UIAction({
     $id: Now.ID['rainbow_ui_action'],
     name: '🎨 Make it Rainbow!',
     table: 'incident',
-    sys_name: 'make_it_rainbow_button',
     action_name: 'makeItRainbow',
     client: true,
     form_button: true,
