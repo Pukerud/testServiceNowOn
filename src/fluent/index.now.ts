@@ -16,13 +16,10 @@ ClientScript({
     isolate_script: false,
     type: 'onLoad',
     script: script`function onLoad() {
-        g_form.addInfoMessage("Table loaded successfully!! 🚀🚀🚀🚀🚀🚀🚀🚀🚀");
-
-    setTimeout(function() {
-        try {
-            g_form.addInfoMessage("[RainbowButton] Starting script execution.");
-
-            // Create the button
+        g_form.addInfoMessage("Table loaded successfully!! 🎉🎉🎉🎉🎉🎉")
+        
+        // Add a fun button to change form colors - works in both classic and workspace
+        setTimeout(function() {
             var button = document.createElement('button');
             button.innerHTML = '🎨 Make it Rainbow!';
             button.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 9999; padding: 10px; background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.3);';
