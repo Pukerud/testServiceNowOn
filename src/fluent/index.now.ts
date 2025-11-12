@@ -28,9 +28,9 @@ ClientScript({
                 var randomColor = colors[Math.floor(Math.random() * colors.length)];
                 
                 // Try different selectors for classic vs workspace
-                var targetElement = document.querySelector('body') ||
-                                   document.querySelector('.sn-workspace') ||
+                var targetElement = document.querySelector('.sn-workspace') ||
                                    document.querySelector('.sn-form-layout') ||
+                                   document.querySelector('body') ||
                                    document.querySelector('html');
                 
                 if (targetElement) {
@@ -48,9 +48,9 @@ ClientScript({
             };
             
             // Try to append to different containers based on UI
-            var targetContainer = document.querySelector('body') ||
-                                document.querySelector('.sn-workspace') ||
-                                document.querySelector('.sn-form-layout');
+            var targetContainer = document.querySelector('.sn-workspace') ||
+                                document.querySelector('.sn-form-layout') ||
+                                document.querySelector('body');
             
             if (targetContainer) {
                 targetContainer.appendChild(button);
