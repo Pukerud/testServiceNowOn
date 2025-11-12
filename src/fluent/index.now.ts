@@ -37,11 +37,27 @@ ClientScript({
                     targetElement.style.background = 'linear-gradient(135deg, ' + randomColor + ', white)';
                     g_form.addInfoMessage(' Form color changed! You made it fun! ');
                     
-                    // Add some extra fun - animate the button
-                    button.style.transform = 'scale(1.1) rotate(5deg)';
-                    setTimeout(function() {
-                        button.style.transform = 'scale(1) rotate(0deg)';
-                    }, 300);
+                    if (targetElement) {
+                        targetElement.style.background = 'linear-gradient(135deg, ' + randomColor + ', white)';
+                        g_form.addInfoMessage('🌈 Form color changed! You made it fun! 🎉');
+                        button.style.transform = 'scale(1.1) rotate(5deg)';
+                        setTimeout(function() {
+                            button.style.transform = 'scale(1) rotate(0deg)';
+                        }, 300);
+                    } else {
+                        g_form.addInfoMessage('⚠️ Could not find element to color, but still fun! 😊');
+                    }
+                };
+
+                g_form.addInfoMessage('DEBUG: Button created, attempting to append.');
+                var targetContainer = document.querySelector('.sn-workspace') || document.querySelector('.sn-form-layout');
+
+                if (targetContainer) {
+                    targetContainer.appendChild(button);
+                    g_form.addInfoMessage('🎨 Rainbow button added to target container! Click me! 🌈');
+                } else if (document.body) {
+                    document.body.appendChild(button);
+                    g_form.addInfoMessage('🎨 Rainbow button added to document.body! Click me! 🌈');
                 } else {
                     g_form.addInfoMessage('⚠️ Could not find element to color, but still fun! ');
                 }
@@ -60,7 +76,7 @@ ClientScript({
                 document.body.appendChild(button);
                 g_form.addInfoMessage(' Rainbow button added (fallback)! Click me! ');
             }
-        }, 2000); // Increased delay to ensure form is fully loaded
+        }, 3000); // Increased delay to 3 seconds
     }`,
 })
 
