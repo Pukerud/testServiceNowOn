@@ -16,67 +16,59 @@ ClientScript({
     isolate_script: false,
     type: 'onLoad',
     script: script`function onLoad() {
-        g_form.addInfoMessage("Table loaded successfully!! ")
-        
-        // Add a fun button to change form colors - works in both classic and workspace
-        setTimeout(function() {
+        g_form.addInfoMessage("Table loaded successfully!! 🚀🚀🚀🚀🚀🚀🚀🚀🚀");
+
+    setTimeout(function() {
+        try {
+            g_form.addInfoMessage("[RainbowButton] Starting script execution.");
+
+            // Create the button
             var button = document.createElement('button');
-            button.innerHTML = ' Make it Rainbow!';
+            button.innerHTML = '🎨 Make it Rainbow!';
             button.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 9999; padding: 10px; background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.3);';
+
+            // Define the click handler
             button.onclick = function() {
                 var colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#FFD93D', '#6BCF7F'];
                 var randomColor = colors[Math.floor(Math.random() * colors.length)];
                 
-                // Try different selectors for classic vs workspace
-                var targetElement = document.querySelector('body') ||
-                                   document.querySelector('.sn-workspace') ||
-                                   document.querySelector('.sn-form-layout') ||
-                                   document.querySelector('html');
-                
-                if (targetElement) {
-                    targetElement.style.background = 'linear-gradient(135deg, ' + randomColor + ', white)';
-                    g_form.addInfoMessage(' Form color changed! You made it fun! ');
-                    
-                    if (targetElement) {
-                        targetElement.style.background = 'linear-gradient(135deg, ' + randomColor + ', white)';
-                        g_form.addInfoMessage('🌈 Form color changed! You made it fun! 🎉');
-                        button.style.transform = 'scale(1.1) rotate(5deg)';
-                        setTimeout(function() {
-                            button.style.transform = 'scale(1) rotate(0deg)';
-                        }, 300);
-                    } else {
-                        g_form.addInfoMessage('⚠️ Could not find element to color, but still fun! 😊');
-                    }
-                };
+                var colorTarget = document.querySelector('.now-modal-dialog-body') || // Workspace Modal
+                                  document.querySelector('.sn-component-workspace-main') || // Workspace Main Area
+                                  document.body; // Fallback to body
 
-                g_form.addInfoMessage('DEBUG: Button created, attempting to append.');
-                var targetContainer = document.querySelector('.sn-workspace') || document.querySelector('.sn-form-layout');
-
-                if (targetContainer) {
-                    targetContainer.appendChild(button);
-                    g_form.addInfoMessage('🎨 Rainbow button added to target container! Click me! 🌈');
-                } else if (document.body) {
-                    document.body.appendChild(button);
-                    g_form.addInfoMessage('🎨 Rainbow button added to document.body! Click me! 🌈');
+                if (colorTarget) {
+                    colorTarget.style.background = 'linear-gradient(135deg, ' + randomColor + ', white)';
+                    g_form.addInfoMessage('🌈 Form color changed! You made it fun! 🎉');
+                    button.style.transform = 'scale(1.1) rotate(5deg)';
+                    setTimeout(function() { button.style.transform = 'scale(1) rotate(0deg)'; }, 300);
                 } else {
-                    g_form.addInfoMessage('⚠️ Could not find element to color, but still fun! ');
+                    g_form.addInfoMessage('⚠️ [RainbowButton] Could not find an element to apply color to.');
                 }
             };
-            
-            // Try to append to different containers based on UI
-            var targetContainer = document.querySelector('body') ||
-                                document.querySelector('.sn-workspace') ||
-                                document.querySelector('.sn-form-layout');
-            
+
+            // Determine the environment and find the container
+            var targetContainer = null;
+            if (typeof g_aw !== 'undefined') {
+                g_form.addInfoMessage("[RainbowButton] Agent Workspace detected. Searching for workspace container...");
+                // In Workspace, we need to find the right frame/element.
+                targetContainer = document.querySelector('.now-modal-dialog-body') || document.querySelector('.sn-component-workspace-main');
+            } else {
+                g_form.addInfoMessage("[RainbowButton] Classic UI detected. Using document.body.");
+                targetContainer = document.body;
+            }
+
+            // Append the button
             if (targetContainer) {
                 targetContainer.appendChild(button);
-                g_form.addInfoMessage(' Rainbow button added! Click me! ');
+                g_form.addInfoMessage('🎨 [RainbowButton] Button appended successfully! Click me! 🌈');
             } else {
-                // Fallback - just add to body
-                document.body.appendChild(button);
-                g_form.addInfoMessage(' Rainbow button added (fallback)! Click me! ');
+                g_form.addInfoMessage('❌ [RainbowButton] FAILED: Could not find a suitable container to attach the button.');
             }
-        }, 3000); // Increased delay to 3 seconds
+
+        } catch (e) {
+            g_form.addInfoMessage('❌ [RainbowButton] FAILED with an error: ' + e.message);
+        }
+    }, 3000);
     }`,
 })
 
@@ -90,5 +82,4 @@ BusinessRule({
     order: 100,
     when: 'after',
     active: true,
-    abort_action: false,
 })
